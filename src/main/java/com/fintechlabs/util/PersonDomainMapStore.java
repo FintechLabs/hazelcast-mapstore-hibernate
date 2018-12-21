@@ -42,7 +42,7 @@ public class PersonDomainMapStore implements MapStore<String, PersonDomainHazel>
 
     @Override
     public void deleteAll(Collection<String> keys) {
-
+        keys.forEach(this::delete);
     }
 
     @Override
