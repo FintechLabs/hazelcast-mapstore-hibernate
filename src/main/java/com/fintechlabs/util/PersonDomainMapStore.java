@@ -24,6 +24,7 @@ public class PersonDomainMapStore implements MapStore<String, PersonDomainHazel>
     @Override
     public void store(String key, PersonDomainHazel value) {
         session.beginTransaction();
+        value.setVersion(0L);
         session.save(value);
         session.getTransaction().commit();
     }
