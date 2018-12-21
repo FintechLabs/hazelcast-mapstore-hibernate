@@ -33,7 +33,11 @@ public class PersonDomainMapStore implements MapStore<String, PersonDomainHazel>
 
     @Override
     public void delete(String key) {
-
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(PersonDomainHazel.class).add(Restrictions.eq("uniqueId", key));
+        PersonDomainHazel personDomainHazel = (PersonDomainHazel) criteria.uniqueResult();
+        session.delete(personDomainHazel);
+        session.getTransaction().commit();
     }
 
     @Override
